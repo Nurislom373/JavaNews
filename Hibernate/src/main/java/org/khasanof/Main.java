@@ -1,6 +1,5 @@
 package org.khasanof;
 
-import jakarta.persistence.EntityManager;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -9,7 +8,6 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.cfg.Environment;
 import org.hibernate.service.ServiceRegistry;
 import org.khasanof.Model.Car;
-import org.khasanof.config.HibernateUtil;
 
 import java.time.LocalDate;
 import java.util.Properties;
@@ -22,16 +20,6 @@ public class Main {
         save(car);
 
         System.out.println(get(car.getId()));
-//        SessionFactory sessionFactory = HibernateUtil.getSessionAnnotationFactory();
-//        EntityManager entityManager = sessionFactory.createEntityManager();
-//
-//        entityManager.persist(car);
-//
-////        Session session = sessionFactory.getCurrentSession();
-////        session.beginTransaction();
-////        session.persist(car);
-////        session.getTransaction().commit();
-//        sessionFactory.close();
     }
 
     public static SessionFactory sessionFactory() {
