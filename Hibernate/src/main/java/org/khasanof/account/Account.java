@@ -90,9 +90,7 @@ class Main {
 
         Session openSession = JavaBasedConfig.getSessionFactory().openSession();
 
-//        insert(openSession, account);
-
-        System.out.println(advancedList(openSession));
+        delete(openSession, 4L);
     }
 
     public static List<Account> getList(Session session) {
@@ -100,9 +98,14 @@ class Main {
         return session.createQuery("from Account", Account.class).list();
     }
 
+    public static Account get(Session session, Long id) {
+        return session.find(Account.class, id);
+    }
+
     public static List<Account> advancedList(Session session) {
         session.beginTransaction();
-        return session.createQuery("from Account where money > :money and owner = :owner", Account.class)
+        return session.createQuery("from Account where money > :money and owner = :owner",
+                        Account.class)
                 .setParameter("money", 10)
                 .setParameter("owner", "Nurislom")
                 .list();
@@ -114,8 +117,18 @@ class Main {
         session.getTransaction().commit();
     }
 
-    public static void delete(Session session, Account account) {
+    public static void delete(Session session, Long id) {
+        session.beginTransaction();
+        session.createMutationQuery("DELETE FROM Account WHERE id = :id")
+                .setParameter("id", id);
+        session.getTransaction().commit();
+    }
 
+    public static int count(Session session) {
+        session.beginTransaction();
+        return session.createNativeQuery("SELECT count(*) FROM Account",
+                        Integer.class)
+                .getSingleResult();
     }
 
 }
