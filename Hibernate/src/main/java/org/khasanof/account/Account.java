@@ -57,6 +57,10 @@ public class Account {
         this.money = money;
     }
 
+    public Long getId() {
+        return id;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
