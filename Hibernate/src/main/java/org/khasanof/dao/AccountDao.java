@@ -148,8 +148,6 @@ public class AccountDao {
         }
     }
 
-
-
     private void notNull(Object o, String message) {
         if (Objects.isNull(o)) {
             throw new RuntimeException(message);
