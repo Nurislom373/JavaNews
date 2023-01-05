@@ -22,7 +22,7 @@ public class Test {
         Account account = dao.get(6L);
         System.out.println("account = " + account);
 
-        boolean any = dao.existById(60L);
+        boolean any = dao.existById(6L);
         System.out.println("any = " + any);
 
         List<Account> list = dao.list();
