@@ -13,15 +13,16 @@ import com.google.api.client.util.DateTime;
 import com.google.api.client.util.store.FileDataStoreFactory;
 import com.google.api.services.calendar.Calendar;
 import com.google.api.services.calendar.CalendarScopes;
-import com.google.api.services.calendar.model.Event;
-import com.google.api.services.calendar.model.Events;
+import com.google.api.services.calendar.model.*;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.security.GeneralSecurityException;
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -93,6 +94,8 @@ public class CalendarQuickstart {
                         .setApplicationName(APPLICATION_NAME)
                         .build();
 
+        addEvent(service);
+
         // List the next 10 events from the primary calendar.
         DateTime now = new DateTime(System.currentTimeMillis());
         Events events = service.events().list("primary")
@@ -102,6 +105,12 @@ public class CalendarQuickstart {
                 .setSingleEvents(true)
                 .execute();
         List<Event> items = events.getItems();
+
+        String calendarId = service.calendars().get("primary")
+                .getCalendarId();
+
+        System.out.println("calendarId = " + calendarId);
+
         if (items.isEmpty()) {
             System.out.println("No upcoming events found.");
         } else {
@@ -114,6 +123,52 @@ public class CalendarQuickstart {
                 System.out.printf("%s (%s)\n", event.getSummary(), start);
             }
         }
+    }
+
+    public static void addEvent(Calendar calendar) throws IOException {
+        Event event = new Event()
+                .setSummary("Start Meeting With Canada")
+                .setLocation("USA, Canada")
+                .setDescription("A chance to hear more about Google's developer products.");
+
+        Date date = new Date();
+
+        DateTime startDate = new DateTime(date);
+        EventDateTime start = new EventDateTime()
+                .setDateTime(startDate)
+                .setTimeZone("UTC");
+        event.setStart(start);
+
+        DateTime endDate = new DateTime(date.getTime() + 3600000);
+        EventDateTime end = new EventDateTime()
+                .setDateTime(endDate)
+                .setTimeZone("UTC");
+        event.setEnd(end);
+
+        /**
+         * It is optional whether or not to add this count to the daily recurrence count
+         */
+        String[] recurrence = new String[]{"RRULE:FREQ=DAILY;COUNT=2"};
+        event.setRecurrence(Arrays.asList(recurrence));
+
+        EventAttendee[] attendees = new EventAttendee[]{
+                new EventAttendee().setEmail("noza5037@gmail.com"),
+                new EventAttendee().setEmail("khasanof373@gmail.com"),
+        };
+        event.setAttendees(Arrays.asList(attendees));
+
+        EventReminder[] eventReminders = new EventReminder[] {
+                new EventReminder().setMethod("email").setMinutes(24 * 60),
+                new EventReminder().setMethod("popup").setMinutes(10),
+        };
+        Event.Reminders reminders = new Event.Reminders()
+                .setUseDefault(false)
+                .setOverrides(Arrays.asList(eventReminders));
+        event.setReminders(reminders);
+
+        String calendarId = "primary";
+        Event execute = calendar.events().insert(calendarId, event).execute();
+        System.out.printf("Event Created: %s\n", execute.getHtmlLink());
     }
 
 }
