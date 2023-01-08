@@ -96,6 +96,8 @@ public class CalendarQuickstart {
 
         addEvent(service);
 
+//        showCalendars(service);
+
         // List the next 10 events from the primary calendar.
         DateTime now = new DateTime(System.currentTimeMillis());
         Events events = service.events().list("primary")
@@ -105,11 +107,6 @@ public class CalendarQuickstart {
                 .setSingleEvents(true)
                 .execute();
         List<Event> items = events.getItems();
-
-        String calendarId = service.calendars().get("primary")
-                .getCalendarId();
-
-        System.out.println("calendarId = " + calendarId);
 
         if (items.isEmpty()) {
             System.out.println("No upcoming events found.");
@@ -170,5 +167,25 @@ public class CalendarQuickstart {
         Event execute = calendar.events().insert(calendarId, event).execute();
         System.out.printf("Event Created: %s\n", execute.getHtmlLink());
     }
+
+    public static void showCalendars(Calendar calendar) throws IOException {
+        CalendarList list = calendar.calendarList()
+                .list().execute();
+        list.getItems().forEach((o) -> {
+            System.out.println("o = " + o);
+        });
+    }
+
+    public static void syncSetting(Calendar service) throws IOException {
+        Events events = service.events().list("primary")
+                .setMaxResults(10).execute();
+
+        List<Event> items = events.getItems();
+
+
+    }
+
+
+
 
 }
