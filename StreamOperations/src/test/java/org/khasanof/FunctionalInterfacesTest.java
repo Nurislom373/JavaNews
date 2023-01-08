@@ -12,6 +12,15 @@ import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
+/**
+ * Author: Nurislom
+ * <br/>
+ * Date: 1/8/2023
+ * <br/>
+ * Time: 12:27 PM
+ * <br/>
+ * Package: org.khasanof
+ */
 public class FunctionalInterfacesTest {
 
 
