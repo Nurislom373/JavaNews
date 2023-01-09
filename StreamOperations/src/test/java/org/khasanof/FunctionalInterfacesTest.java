@@ -127,6 +127,12 @@ public class FunctionalInterfacesTest {
 
     /**
      * This method is the second method to read a file through lambda expression.
+     *
+     * Using local variables
+     * All the lambda expressions we’ve shown so far used only their arguments inside their
+     * body. But lambda expressions are also allowed to use free variables (variables that aren’t
+     * the parameters and are defined in an outer scope) like anonymous classes can.
+     * They’re called capturing lambdas. For example, the following lambda captures the variable reader:
      */
     @Test
     public void fileReaderWithBiFunction() {
