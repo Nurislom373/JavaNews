@@ -127,7 +127,7 @@ public class FunctionalInterfacesTest {
 
     /**
      * This method is the second method to read a file through lambda expression.
-     *
+     * <p>
      * Using local variables
      * All the lambda expressions we’ve shown so far used only their arguments inside their
      * body. But lambda expressions are also allowed to use free variables (variables that aren’t
@@ -155,6 +155,64 @@ public class FunctionalInterfacesTest {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+
+    /**
+     * In the following code, each element of a List of Integers is passed to the method
+     * of String using a similar map method we defined earlier, resulting in a List of Strings
+     * with various numbers:
+     */
+    @Test
+    public void newInstanceCreateTest() {
+        List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5);
+        List<String> list = newMap(numbers, Integer::toHexString);
+        System.out.println("list = " + list);
+    }
+
+    public List<String> newMap(List<Integer> integers, Function<Integer, String> function) {
+        List<String> strings = new ArrayList<>();
+        for (Integer integer : integers) {
+            strings.add(function.apply(integer));
+        }
+        return strings;
+    }
+
+
+    /**
+     * Finally, you can also compose lambda expressions represented by the Function interface.
+     * The Function interface comes with two default methods for this, andThen and
+     * compose, which both return an instance of Function.
+     * <p>
+     * The method andThen returns a function that first applies a given function to an
+     * input and then applies another function to the result of that application.
+     * For example, given a function f that increments a number (x -> x + 1) and another function g
+     * that multiples a number by 2, you can combine them to create a function h that first
+     * increments a number and then multiplies the result by 2:
+     */
+    @Test
+    public void mathGOFFunctionalInterface() {
+        Function<Integer, Integer> f = x -> x + 1;
+        Function<Integer, Integer> g = x -> x * 2;
+
+        /*
+         * You can also use the method compose similarly to first apply the function given as argument
+         * to compose and then apply the function to the result. For example, in the previous
+         * example using compose, it would mean f(g(x)) instead of g(f(x)) using andThen
+         */
+        // andThen method x + 1 then x * 2
+        Function<Integer, Integer> andThen = f.andThen(g);
+        // compose method x * 2 then x + 1
+        Function<Integer, Integer> compose = f.compose(g);
+
+        Integer andThenResult = andThen.apply(1);
+        Integer composeResult = compose.apply(1);
+
+        // This return 4.
+        System.out.println("andThenResult = " + andThenResult);
+
+        // This return 3.
+        System.out.println("composeResult = " + composeResult);
     }
 
 }
