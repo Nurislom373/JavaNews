@@ -1,6 +1,7 @@
 package org.khasanof;
 
 import org.junit.jupiter.api.Test;
+import org.khasanof.model.Dish;
 import org.khasanof.model.Trader;
 import org.khasanof.model.Transaction;
 
@@ -20,11 +21,28 @@ public class StreamMapAndFlatMapTest {
 
     @Test
     void mapTest() {
-        List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5);
-        List<Integer> list = numbers.stream()
-                .map(n -> n * n).toList();
+        List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 11, 9);
 
+        double average = numbers.stream()
+                .mapToInt(i -> i)
+                .average()
+                .orElseThrow();
+        System.out.println("average = " + average);
+
+        List<Integer> list = numbers.stream()
+                .map(n -> n * n)
+                .toList();
         System.out.println("list = " + list);
+
+        Integer max = numbers.stream()
+                .reduce(Integer::max)
+                .orElseThrow();
+        System.out.println("max = " + max);
+
+        Integer min = numbers.stream()
+                .reduce(Integer::min)
+                .orElseThrow();
+        System.out.println("min = " + min);
     }
 
     @Test
@@ -98,6 +116,47 @@ public class StreamMapAndFlatMapTest {
         Optional<Transaction> reduce = transactions.stream()
                 .reduce((t1, t2) -> t1.getValue() < t2.getValue() ? t1 : t2);
         System.out.println("reduce.isPresent() = " + reduce.isPresent());
+
+        /*
+          A stream supports the methods min and max that take a Comparator
+          as argument to specify which key to compare with when calculating the minimum
+          or maximum
+         */
+        Optional<Transaction> minTransaction = transactions.stream()
+                .min(Comparator.comparing(Transaction::getValue));
+        System.out.println("minTransaction.isPresent() = " + minTransaction.isPresent());
+    }
+
+    @Test
+    void caloriesTest() {
+        List<Dish> menu = List.of(
+                new Dish("Osh", 500, 12000),
+                new Dish("Shashlik", 700, 9000),
+                new Dish("HotDog", 300, 17000),
+                new Dish("Lavash", 400, 25000),
+                new Dish("Burger", 400, 24000),
+                new Dish("Gamburger", 500, 30000),
+                new Dish("MurskoyKapriz", 500, 60000)
+        );
+
+        /*
+        You saw earlier that you could use the reduce method to calculate the sum of the elements of a stream
+         */
+        Integer reduceCalories = menu.stream()
+                .map(Dish::getCalories)
+                .reduce(0, Integer::sum);
+        System.out.println("reduceCalories = " + reduceCalories);
+
+        /*
+        The most common methods you’ll use to convert a stream to a specialized version are
+        mapToInt, mapToDouble, and mapToLong. These methods work exactly like the method
+        map that you saw earlier but return a specialized stream instead of a Stream<T>. For
+        example, you can use mapToInt as follows to calculate the sum of calories in the menu
+         */
+        int sum = menu.stream()
+                .mapToInt(Dish::getCalories)
+                .sum();
+        System.out.println("sum = " + sum);
     }
 
 
