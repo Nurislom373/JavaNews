@@ -14,11 +14,21 @@ public class Dish {
     private String name;
     private Integer calories;
     private Integer price;
+    private String type;
 
-    public Dish(String name, Integer calories, Integer price) {
+    public Dish(String name, Integer calories, Integer price, String type) {
         this.name = name;
         this.calories = calories;
         this.price = price;
+        this.type = type;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public String getName() {

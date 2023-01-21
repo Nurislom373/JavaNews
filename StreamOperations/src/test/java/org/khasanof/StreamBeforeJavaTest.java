@@ -25,13 +25,13 @@ public class StreamBeforeJavaTest {
     @Test
     public void beforeJava7Test() {
         List<Dish> menu = List.of(
-                new Dish("Osh", 500, 12000),
-                new Dish("Shashlik", 700, 9000),
-                new Dish("HotDog", 300, 17000),
-                new Dish("Lavash", 400, 25000),
-                new Dish("Burger", 400, 24000),
-                new Dish("Gamburger", 500, 30000),
-                new Dish("MurskoyKapriz", 500, 60000)
+                new Dish("Osh", 500, 12000, "Food"),
+                new Dish("Shashlik", 700, 9000, "Food"),
+                new Dish("HotDog", 300, 17000, "FastFood"),
+                new Dish("Lavash", 400, 25000, "FastFood"),
+                new Dish("Burger", 400, 24000, "FastFood"),
+                new Dish("Gamburger", 500, 30000, "FastFood"),
+                new Dish("MurskoyKapriz", 500, 60000, "Salt")
         );
 
         List<Dish> lowCaloricDishes = new ArrayList<>();
@@ -62,13 +62,13 @@ public class StreamBeforeJavaTest {
     @Test
     public void afterJava8Test() {
         List<Dish> menu = List.of(
-                new Dish("Osh", 500, 12000),
-                new Dish("Shashlik", 700, 9000),
-                new Dish("HotDog", 300, 17000),
-                new Dish("Lavash", 400, 25000),
-                new Dish("Burger", 400, 24000),
-                new Dish("Gamburger", 500, 30000),
-                new Dish("MurskoyKapriz", 500, 60000)
+                new Dish("Osh", 500, 12000, "Food"),
+                new Dish("Shashlik", 700, 9000, "Food"),
+                new Dish("HotDog", 300, 17000, "FastFood"),
+                new Dish("Lavash", 400, 25000, "FastFood"),
+                new Dish("Burger", 400, 24000, "FastFood"),
+                new Dish("Gamburger", 500, 30000, "FastFood"),
+                new Dish("MurskoyKapriz", 500, 60000, "Salt")
         );
 
         List<String> list = menu.stream()
