@@ -90,7 +90,7 @@ public class StreamCollectorsTest {
                 .collect(Collectors.groupingBy(Dish::getType));
         System.out.println("typeList = " + typeList);
 
-        enum CaloricLevel { DIET, NORMAL, FAT }
+        enum CaloricLevel {DIET, NORMAL, FAT}
 
         Map<CaloricLevel, List<Dish>> caloricLevelListMap = this.menu.stream()
                 .collect(Collectors.groupingBy(dish -> {
@@ -133,8 +133,23 @@ public class StreamCollectorsTest {
                                 Collectors.toList())));
 
         System.out.println("dishNamesByType = " + dishNamesByType);
-    }
 
+        //
+        Map<String, Optional<Dish>> mostCaloricByType = this.menu.stream()
+                .collect(Collectors.groupingBy(Dish::getType,
+                        Collectors.maxBy(Comparator.comparing(Dish::getCalories))));
+
+        System.out.println("mostCaloricByType = " + mostCaloricByType);
+
+        //
+        Map<String, Dish> map = this.menu.stream()
+                .collect(Collectors.groupingBy(Dish::getType,
+                        Collectors.collectingAndThen(
+                                Collectors.maxBy(Comparator.comparingInt(Dish::getCalories)),
+                                Optional::get)));
+
+        System.out.println("map = " + map);
+    }
 
 
 }
