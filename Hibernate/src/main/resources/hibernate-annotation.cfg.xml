@@ -17,9 +17,10 @@
         <property name="show_sql">true</property>
 
         <!-- org.hibernate.HibernateException: No CurrentSessionContext configured! -->
-        <property name="hibernate.current_session_context_class">thread</property>
+<!--        <property name="hibernate.current_session_context_class">thread</property>-->
 
         <!-- Mapping with model class containing annotations -->
-        <mapping class="org.khasanof.Model.Car"/>
+<!--        <mapping class="org.khasanof.Model.Car"/>-->
+        <mapping class="org.khasanof.introduction.entity.AuthUserEntity"/>
     </session-factory>
 </hibernate-configuration>

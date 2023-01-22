@@ -7,13 +7,18 @@ import org.hibernate.cfg.Environment;
 import org.hibernate.service.ServiceRegistry;
 import org.khasanof.Model.Car;
 import org.khasanof.account.Account;
+import org.khasanof.introduction.entity.AuthUserEntity;
 
 import java.util.Properties;
 
 /**
- * @author Nurislom
- * Date: 12/5/2022
- * Time: 10:56 PM
+ * Author: Nurislom
+ * <br/>
+ * Date: 1/22/2023
+ * <br/>
+ * Time: 6:25 PM
+ * <br/>
+ * Package: org.khasanof.config.javaBasedConfig
  */
 public class JavaBasedConfig {
 
@@ -29,6 +34,7 @@ public class JavaBasedConfig {
         Configuration configuration = new Configuration();
         configuration.setProperties(getProperties());
         configuration.addAnnotatedClass(Account.class);
+        configuration.addAnnotatedClass(AuthUserEntity.class);
 
         ServiceRegistry registry = new StandardServiceRegistryBuilder()
                 .applySettings(configuration.getProperties()).build();
