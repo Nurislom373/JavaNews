@@ -7,6 +7,8 @@ import org.hibernate.cfg.Environment;
 import org.hibernate.service.ServiceRegistry;
 import org.khasanof.Model.Car;
 import org.khasanof.account.Account;
+import org.khasanof.converter.entity.Person;
+import org.khasanof.converter.entity.Product;
 import org.khasanof.introduction.entity.AuthUserEntity;
 
 import java.util.Properties;
@@ -35,6 +37,8 @@ public class JavaBasedConfig {
         configuration.setProperties(getProperties());
         configuration.addAnnotatedClass(Account.class);
         configuration.addAnnotatedClass(AuthUserEntity.class);
+        configuration.addAnnotatedClass(Person.class);
+        configuration.addAnnotatedClass(Product.class);
 
         ServiceRegistry registry = new StandardServiceRegistryBuilder()
                 .applySettings(configuration.getProperties()).build();
