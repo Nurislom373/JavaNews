@@ -1,6 +1,8 @@
 package org.khasanof.basicValues.types;
 
 import jakarta.persistence.*;
+import org.hibernate.Length;
+import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.NumericBooleanConverter;
 import org.hibernate.type.TrueFalseConverter;
 import org.hibernate.type.YesNoConverter;
@@ -76,37 +78,52 @@ public class Types {
 
 
     // Hibernate Byte/byte JDBC TINYINT typega aylantirib saqlab ketadi.
-    Byte wrapperByte;
-    byte primitiveByte;
+    private Byte wrapperByte;
+    private byte primitiveByte;
 
     // Hibernate Short/short JDBC SMALLINT typega aylantirib saqlab ketadi.
-    Short wrapperShort;
-    short primitiveShort;
+    private Short wrapperShort;
+    private short primitiveShort;
 
     // Hibernate Integer/int JDBC INTEGER typega aylantiribi saqlab ketadi.
-    Integer wrapperInteger;
-    int primitiveInteger;
+    private Integer wrapperInteger;
+    private int primitiveInteger;
 
     // Hibernate Long/long JDBC BIGINT typega aylantirib saqlab ketadi.
-    Long wrapperLong;
-    long primitiveLong;
+    private Long wrapperLong;
+    private long primitiveLong;
 
     // Hibernate BigInteger JDBC NUMERIC typega aylantirib saqlab ketadi.
-    BigInteger bigInteger;
+    private BigInteger bigInteger;
 
     // Hibernate Double/double JDBC DOUBLE, FLOAT, REAl yoki NUMERIC lardan biriga aylantirib saqlab ketadi.
-    Double wrapperDouble;
-    double primitiveDouble;
+    private Double wrapperDouble;
+    private double primitiveDouble;
 
     // Hibernate Float/float JDBC FLOAT, REAL yoki NUMERIC lardan biriga aylantirib saqlab ketadi.
-    Float wrapperFloat;
-    float primitiveFloat;
+    private Float wrapperFloat;
+    private float primitiveFloat;
 
     // BigDecimal JDBC NUMERIC ga aylantirib saqlab ketadi.
-    BigDecimal bigDecimal;
+    private BigDecimal bigDecimal;
 
     // Character JDBC CHAR ga aylantirib saqlab ketadi.
-    Character wrapperCharacter;
-    char primitiveCharacter;
+    private Character wrapperCharacter;
+    private char primitiveCharacter;
+
+
+    // String JDBC VARCHAR aylantirib saqlab ketadi.
+    private String string;
+
+    // String @Lob annotatsiyani qo'yib ketsak JDBC CLOB type aylantiridi.
+    @Lob
+    private String lob;
+
+    // Length.LONG yozib ketsa LONG length bo'lgan VARCHAR JDBC database saqlab ketadi.
+    @Column(length = Length.LONG)
+    private String textFirstWay;
+    @JdbcTypeCode(java.sql.Types.LONGVARCHAR)
+    private String textSecondWay;
+
 }
 
