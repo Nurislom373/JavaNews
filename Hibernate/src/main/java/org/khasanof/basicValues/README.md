@@ -18,3 +18,15 @@ Bu atribut qiymatni EAGER yoki LAZY olish kerakligini aniqlaydi.
 # Column Annotation
 
 # Types
+
+### BLOB and CLOB types
+
++ BLOB - Stores any kind of data in binary format. Typically used for multimedia files such as images and videos.
++ CLOB - Used for large strings or documents that use the database character set exclusively.
++ NCLOB - Stores string data in National Character Set format.
+
+<hr/>
+
++ BLOB - data type har qanday ma'lumotlarni binary formatda saqlaydi. Odat Rasm va Video kabi filelar saqlash uchun ishlatiladi.
++ CLOB - data type katta stringlarni yoki documentlarni saqlash uchun ishlatiladi.
++ NCLOB - data type National characterlardan iborat stringlarni saqlaydi.
