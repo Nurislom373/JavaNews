@@ -1,16 +1,9 @@
-package org.khasanof.converter;
+package org.khasanof.basicValues.attributeConverter;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.khasanof.config.javaBasedConfig.JavaBasedConfig;
-import org.khasanof.config.xmlBasedConfig.XmlBasedConfig;
-import org.khasanof.converter.entity.Person;
-import org.khasanof.converter.entity.Product;
-import org.khasanof.converter.enums.Gender;
-import org.khasanof.introduction.entity.AuthUserEntity;
-import org.khasanof.introduction.enums.LanguageEnums;
-import org.khasanof.introduction.enums.StatusEnum;
 
 /**
  * Author: Nurislom
@@ -21,19 +14,16 @@ import org.khasanof.introduction.enums.StatusEnum;
  * <br/>
  * Package: org.khasanof.converter
  */
-public class Converter {
+public class AttributeConverterMain {
 
     public static void main(String[] args) {
         SessionFactory sessionFactory = JavaBasedConfig.getSessionFactory();
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
 
-        var product = new Product();
-        product.setName("bjdhsfdsv");
-
         var person = new Person("Jeck", Gender.MALE);
 
-        session.persist(product);
+        session.persist(person);
         transaction.commit();
     }
 

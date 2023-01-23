@@ -1,4 +1,4 @@
-package org.khasanof.Relations.model;
+package org.khasanof.account.Relations.model;
 
 import jakarta.persistence.*;
 import org.slf4j.Logger;

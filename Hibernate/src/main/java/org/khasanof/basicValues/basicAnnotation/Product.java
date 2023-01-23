@@ -1,4 +1,4 @@
-package org.khasanof.converter.entity;
+package org.khasanof.basicValues.basicAnnotation;
 
 import jakarta.persistence.*;
 

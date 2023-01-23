@@ -1,8 +1,6 @@
-package org.khasanof.converter.entity;
+package org.khasanof.basicValues.attributeConverter;
 
 import jakarta.persistence.*;
-import org.khasanof.converter.GenderConverter;
-import org.khasanof.converter.enums.Gender;
 
 /**
  * Author: Nurislom

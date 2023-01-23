@@ -12,3 +12,9 @@ Basic Annotatsiyasi 2ta atributni o'z ichiga oladi.
 Ushbu atribut nulllarga ruxsat beradimi yoki yo'qligini aniqlaydi.
 - <strong>fetch</strong> - FetchType (defaults to EAGER)
 Bu atribut qiymatni EAGER yoki LAZY olish kerakligini aniqlaydi.
+
+# Formula Annotation
+
+# Column Annotation
+
+# Types

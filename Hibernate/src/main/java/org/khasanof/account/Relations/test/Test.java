@@ -1,8 +1,8 @@
-package org.khasanof.Relations.test;
+package org.khasanof.account.Relations.test;
 
-import org.khasanof.Relations.GenericDao;
-import org.khasanof.Relations.model.Company;
-import org.khasanof.Relations.model.ContactEmbeddable;
+import org.khasanof.account.Relations.GenericDao;
+import org.khasanof.account.Relations.model.Company;
+import org.khasanof.account.Relations.model.ContactEmbeddable;
 import org.khasanof.config.javaBasedConfig.JavaBasedConfig;
 
 import java.util.List;

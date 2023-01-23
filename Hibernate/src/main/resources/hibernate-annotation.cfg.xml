@@ -22,6 +22,6 @@
         <!-- Mapping with model class containing annotations -->
 <!--        <mapping class="org.khasanof.Model.Car"/>-->
         <mapping class="org.khasanof.introduction.entity.AuthUserEntity"/>
-        <mapping class="org.khasanof.converter.entity.Person"/>
+        <mapping class="org.khasanof.basicValues.attributeConverter.Person"/>
     </session-factory>
 </hibernate-configuration>

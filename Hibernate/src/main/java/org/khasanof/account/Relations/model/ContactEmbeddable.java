@@ -1,4 +1,4 @@
-package org.khasanof.Relations.model;
+package org.khasanof.account.Relations.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;

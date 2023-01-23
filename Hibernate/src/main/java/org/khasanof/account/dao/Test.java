@@ -1,4 +1,4 @@
-package org.khasanof.dao;
+package org.khasanof.account.dao;
 
 import org.khasanof.account.Account;
 import org.khasanof.config.javaBasedConfig.JavaBasedConfig;

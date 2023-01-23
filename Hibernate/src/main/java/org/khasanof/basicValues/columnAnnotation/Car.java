@@ -1,4 +1,4 @@
-package org.khasanof.Model;
+package org.khasanof.basicValues.columnAnnotation;
 
 import jakarta.persistence.*;
 
@@ -11,12 +11,14 @@ import java.time.LocalDate;
  * Time: 10:55 PM
  */
 @Entity
-@Table(name = "car", uniqueConstraints = {@UniqueConstraint(columnNames = {"id"})})
+@Table(name = "car", uniqueConstraints = {
+        @UniqueConstraint(columnNames = {"id"})
+})
 public class Car implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false, unique = true, length = 11)
+    @Column(name = "id", nullable = false, updatable = false, unique = true, length = 11)
     private int id;
 
     @Column(name = "model", nullable = false, length = 120)

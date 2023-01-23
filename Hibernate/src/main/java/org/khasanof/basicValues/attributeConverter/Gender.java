@@ -1,4 +1,4 @@
-package org.khasanof.converter.enums;
+package org.khasanof.basicValues.attributeConverter;
 
 import java.util.Arrays;
 

@@ -1,8 +1,7 @@
-package org.khasanof.converter;
+package org.khasanof.basicValues.attributeConverter;
 
 import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Converter;
-import org.khasanof.converter.enums.Gender;
 
 import java.util.Objects;
 
