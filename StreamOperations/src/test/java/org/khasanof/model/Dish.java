@@ -15,6 +15,15 @@ public class Dish {
     private Integer calories;
     private Integer price;
     private String type;
+    private boolean isVegetarian;
+
+    public Dish(String name, Integer calories, Integer price, String type, boolean isVegetarian) {
+        this.name = name;
+        this.calories = calories;
+        this.price = price;
+        this.type = type;
+        this.isVegetarian = isVegetarian;
+    }
 
     public Dish(String name, Integer calories, Integer price, String type) {
         this.name = name;
@@ -55,12 +64,22 @@ public class Dish {
         this.price = price;
     }
 
+    public boolean isVegetarian() {
+        return isVegetarian;
+    }
+
+    public void setVegetarian(boolean vegetarian) {
+        isVegetarian = vegetarian;
+    }
+
     @Override
     public String toString() {
         return "Dish{" +
                 "name='" + name + '\'' +
                 ", calories=" + calories +
                 ", price=" + price +
+                ", type='" + type + '\'' +
+                ", isVegetarian=" + isVegetarian +
                 '}';
     }
 }

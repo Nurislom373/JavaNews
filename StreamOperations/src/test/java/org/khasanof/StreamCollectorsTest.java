@@ -4,6 +4,8 @@ import org.junit.jupiter.api.Test;
 import org.khasanof.model.Dish;
 
 import java.util.*;
+import java.util.function.Supplier;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -19,13 +21,13 @@ import java.util.stream.Stream;
 public class StreamCollectorsTest {
 
     private final List<Dish> menu = List.of(
-            new Dish("Osh", 500, 12000, "Food"),
-            new Dish("Shashlik", 700, 9000, "Food"),
-            new Dish("HotDog", 300, 17000, "FastFood"),
-            new Dish("Lavash", 400, 25000, "FastFood"),
-            new Dish("Burger", 400, 24000, "FastFood"),
-            new Dish("Gamburger", 500, 30000, "FastFood"),
-            new Dish("MurskoyKapriz", 500, 60000, "Salt")
+            new Dish("Osh", 500, 12000, "Food", false),
+            new Dish("Shashlik", 700, 9000, "Food", false),
+            new Dish("HotDog", 300, 17000, "FastFood", true),
+            new Dish("Lavash", 400, 25000, "FastFood", true),
+            new Dish("Burger", 400, 24000, "FastFood", false),
+            new Dish("Gamburger", 500, 30000, "FastFood", false),
+            new Dish("MurskoyKapriz", 500, 60000, "Salt", true)
     );
 
     @Test
@@ -150,6 +152,32 @@ public class StreamCollectorsTest {
 
         System.out.println("map = " + map);
     }
+
+    /**
+     * Partitioning is a special case of grouping: having a predicate called a partitioning
+     * function as a classification function. The fact that the partitioning function returns
+     * a boolean means the resulting grouping Map will have a Boolean as a key type, and therefore,
+     * there can be at most two different groups—one for true and one for false. For
+     * instance, if you’re vegetarian or have invited a vegetarian friend to have dinner with
+     * you, you may be interested in partitioning the menu into vegetarian and nonvegetarian dishes:
+     */
+    @Test
+    void streamCollectorPartitioningByMethodTest() {
+        Map<Boolean, List<Dish>> map = this.menu.stream()
+                .collect(Collectors.partitioningBy((dish -> dish.getCalories() > 400)));
+
+        List<Dish> dishes = map.get(true);
+        System.out.println("dishes = " + dishes);
+
+
+
+    }
+
+    public <T> Supplier<List<T>> supplier() {
+        return ArrayList::new;
+    }
+
+
 
 
 }
