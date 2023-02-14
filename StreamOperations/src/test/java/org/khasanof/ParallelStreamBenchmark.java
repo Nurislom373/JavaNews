@@ -3,7 +3,10 @@ package org.khasanof;
 import org.junit.jupiter.api.Test;
 import org.openjdk.jmh.annotations.*;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.LongStream;
 import java.util.stream.Stream;
 
 /**
@@ -28,9 +31,11 @@ public class ParallelStreamBenchmark {
                 .reduce(0L, Long::sum);
     }
 
-    @TearDown(Level.Invocation)
-    public void tearDown() {
-        System.gc();
+    @Benchmark
+    public long parallelRangedSum() {
+        return LongStream.rangeClosed(1, N)
+                .parallel()
+                .reduce(0L, Long::sum);
     }
 
     @Test
