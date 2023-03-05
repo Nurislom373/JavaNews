@@ -32,7 +32,7 @@ public class TakeWhileStreamTest {
                 .filter(n -> n.length() % 2 != 0)
                 .forEach(System.out::println);
 
-        //
+        // equivalent
         List<String> list = List.of("cat", "dog", "elephant", "fox", "rabbit", "duck");
         for (String element : list) {
             if (element.length() % 2 != 0) {
@@ -47,7 +47,7 @@ public class TakeWhileStreamTest {
                 .takeWhile(n -> n.length() % 2 != 0)
                 .forEach(System.out::println);
 
-        //
+        // equivalent
         List<String> list = List.of("cat", "dog", "elephant", "fox", "rabbit", "duck");
         for (String element : list) {
             if (element.length() % 2 == 0) {
