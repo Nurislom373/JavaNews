@@ -14,8 +14,7 @@ import java.util.stream.LongStream;
 public class FactorialDS {
 
     public static void main(String[] args) {
-        long recursion = factorialUsingRecursion(7);
-        System.out.println("recursion = " + recursion);
+        factorialUsingStreams(9);
     }
 
     private static void factorialUsingForLoop(int n) {
