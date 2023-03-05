@@ -17,8 +17,13 @@ import java.util.stream.Stream;
 public class TakeWhileStreamTest {
 
     /*
-         The processing is done as long as our predicate is matched and the initial stream still has elements. When
-         either of the conditions becomes false, our Spliterator “breaks” and the streaming operation ends.
+         As Java developers, we often write code that iterates over a set of elements and performs an operation on each
+         one. The Java 8 streams library and its forEach method allow us to write that code in a clean, declarative
+         manner.
+
+         While this is similar to loops, we are missing the equivalent of the break statement to abort iteration.
+         A stream can be very long, or potentially infinite, and if we have no reason to continue processing it, we
+         would want to break from it, rather than wait for its last element.
      */
 
     @Test
