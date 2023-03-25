@@ -14,12 +14,12 @@ import java.util.stream.LongStream;
 public class FactorialDS {
 
     public static void main(String[] args) {
-        factorialUsingStreams(9);
+        factorialUsingRecursion(9);
     }
 
     private static void factorialUsingForLoop(int n) {
         long fact = 1;
-        for (int i = 2; i < n; i++) {
+        for (int i = 2; i <= n; i++) {
             fact = fact * i;
         }
         System.out.println("fact = " + fact);
@@ -31,11 +31,15 @@ public class FactorialDS {
         System.out.println("fact = " + fact);
     }
 
-    private static long factorialUsingRecursion(int n) {
+    private static void factorialUsingRecursion(int n) {
+        System.out.println(factorialUsingRecursionIntern(n));
+    }
+
+    private static long factorialUsingRecursionIntern(int n) {
         if (n <= 2) {
             return n;
         }
-        return n * factorialUsingRecursion(n - 1);
+        return n * factorialUsingRecursionIntern(n - 1);
     }
 
 }
