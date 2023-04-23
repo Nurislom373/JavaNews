@@ -3,9 +3,9 @@ package org.khasanof.collectionFactories;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Author: Nurislom
@@ -29,6 +29,33 @@ public class CollectionFactoriesTest {
 
         Assertions.assertEquals(listNewArraylist.size(), listFactory.size());
         Assertions.assertEquals(listNewArraylist.get(0), listFactory.get(0));
+    }
+
+    @Test
+    void arraysAsListUnsupportedOperationException() {
+        List<String> friends = Arrays.asList("Raphael", "Olivia");
+        friends.set(0, "Rishard");
+        friends.add("thibuat");
+    }
+
+    @Test
+    void createSetWithArraysAsList() {
+        Set<String> collectWithColFac = new HashSet<>(Arrays.asList("Nurislom", "Abror", "MuhammadQodir"));
+        Set<String> collectWithStream = Stream.of("Nurislom", "Abror", "MuhammadQodir")
+                .collect(Collectors.toSet());
+
+        Assertions.assertEquals(collectWithStream.size(), collectWithColFac.size());
+    }
+
+    @Test
+    void createMapFactoryMethod() {
+        Map<String, Integer> ageOfFriends = Map.of("Raphael", 30, "Olivia", 25, "Thibaut", 26);
+        System.out.println(ageOfFriends);
+
+        Map<String, Integer> stringIntegerMap = Map.ofEntries(Map.entry("Raphael", 30),
+                Map.entry("Olivia", 20),
+                Map.entry("Thibaut", 36));
+        System.out.println(stringIntegerMap);
     }
 
 }
