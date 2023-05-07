@@ -1,5 +1,6 @@
 package org.khasanof;
 
+import org.assertj.core.util.TriFunction;
 import org.junit.jupiter.api.Test;
 
 import java.io.BufferedReader;
@@ -11,6 +12,11 @@ import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
+import java.util.function.Supplier;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Author: Nurislom
@@ -213,6 +219,36 @@ public class FunctionalInterfacesTest {
 
         // This return 3.
         System.out.println("composeResult = " + composeResult);
+    }
+
+    @Test
+    public void supplierFunctionalInterfaceTest() {
+        List<Integer> collect = IntStream.rangeClosed(1, 10)
+                .mapToObj((m) -> getValue(() -> m % 2 == 1 ? m : 0))
+                .peek(System.out::println)
+                .toList();
+
+        assertEquals(collect.size(), 10);
+    }
+
+    private Integer getValue(Supplier<Integer> supplier) {
+        return supplier.get();
+    }
+
+    @Test
+    void triFunctionTest() {
+        TriFunction<Character, Integer, Integer, Integer> function = this::getValue;
+
+        assertEquals(25, function.apply('*', 5, 5));
+    }
+
+    private Integer getValue(Character oper, Integer var1, Integer var2) {
+        return switch (oper) {
+            case '+' -> var1 + var2;
+            case '-' -> var1 - var2;
+            case '*' -> var1 * var2;
+            default -> throw new RuntimeException();
+        };
     }
 
 }
