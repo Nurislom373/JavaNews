@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.*;
 
+import static java.util.Map.entry;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
@@ -59,6 +60,7 @@ public class Java8CollectionFeaturesTest {
         assertEquals(integers.size(), 5);
     }
 
+
     @Test
     void removeListFromRemoveIfMethodTest() {
         List<Integer> integers = new ArrayList<>(List.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10));
@@ -69,6 +71,10 @@ public class Java8CollectionFeaturesTest {
         assertEquals(integers.size(), 5);
     }
 
+    /*
+        The replaceAll method on the List interface lets you replace each element in a list
+        with a new one
+     */
     @Test
     void listIteratorUpdateElement() {
         List<Integer> integers = new ArrayList<>(List.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10));
@@ -97,5 +103,22 @@ public class Java8CollectionFeaturesTest {
         assertEquals(integers.size(), 10);
         assertEquals(integers.get(1), 1);
     }
+
+    @Test
+    void sortingMap() {
+        Map<String, String> favouriteMovies = Map.ofEntries(
+                entry("Raphael", "Star Wars"),
+                entry("Cristina", "Matrix"),
+                entry("Olivia", "James Bond")
+        );
+
+        favouriteMovies.entrySet().stream()
+                .sorted(Map.Entry.comparingByKey())
+                .forEachOrdered(System.out::println);
+    }
+
+
+
+
 
 }
