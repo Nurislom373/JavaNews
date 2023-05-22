@@ -5,10 +5,13 @@ import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.disposables.Disposable;
 
 import java.util.List;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         Observable<String> observable = Observable.create(
                 emitter -> {
                     emitter.onNext("Hello RxJava 1!");
@@ -22,8 +25,23 @@ public class Main {
                 () -> System.out.println("Done!")
         );
         subscribe.dispose();
+        intervalMethod();
     }
 
+    private static void someExampleCallableAndFuture() {
+        Observable<String> observable = Observable.fromCallable(() -> "Hello");
+        observable.subscribe(System.out::println).dispose();
+
+        Future<String> future = Executors.newCachedThreadPool().submit(() -> "World");
+        Observable<String> frommed = Observable.fromFuture(future);
+        frommed.subscribe(System.out::println).dispose();
+    }
+
+    private static void intervalMethod() throws InterruptedException {
+        Observable.interval(1, TimeUnit.SECONDS)
+                .subscribe(e -> System.out.println("Received: " + e));
+        Thread.sleep(500);
+    }
 
 
     private Maybe<Integer> simpleGenerateMaybe() {
