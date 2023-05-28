@@ -1,10 +1,7 @@
 package org.khasanof.tempraturerxjava;
 
-import io.reactivex.rxjava3.core.Observable;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.*;
-import org.reactivestreams.Subscriber;
-import org.reactivestreams.Subscription;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
@@ -14,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
+import rx.Observable;
+import rx.Subscriber;
 
 import java.io.IOException;
 import java.util.Random;
@@ -98,11 +97,6 @@ class TemperatureController {
             this.subscriber = new Subscriber<>() {
 
                 @Override
-                public void onSubscribe(Subscription subscription) {
-
-                }
-
-                @Override
                 public void onNext(Temperature temperature) {
                     try {
                         RxSeeEmitter.this.send(temperature);
@@ -110,28 +104,28 @@ class TemperatureController {
                     } catch (IOException e) {
                         log.warn("[{}] Can not send event to SSE, closing subscription, message: {}",
                                 sessionId, e.getMessage());
-                        subscriber.onComplete();
+                        subscriber.onCompleted();
                     }
+                }
+
+                @Override
+                public void onCompleted() {
+                    log.warn("[{}] Stream completed", sessionId);
                 }
 
                 @Override
                 public void onError(Throwable e) {
                     log.warn("[{}] Received sensor error: {}", sessionId, e.getMessage());
                 }
-
-                @Override
-                public void onComplete() {
-                    log.warn("[{}] Stream completed", sessionId);
-                }
             };
 
             onCompletion(() -> {
                 log.info("[{}] SSE completed", sessionId);
-                subscriber.onComplete();
+                subscriber.onCompleted();
             });
             onTimeout(() -> {
                 log.info("[{}] SSE timeout", sessionId);
-                subscriber.onComplete();
+                subscriber.onCompleted();
             });
         }
 
