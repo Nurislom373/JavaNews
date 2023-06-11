@@ -28,11 +28,6 @@ public class MultiFunctionalInterfaceTest {
         BaseClass.doSomething((Runnable) () -> System.out.println("true = " + true));
     }
 
-    @Test
-    void solved() {
-        BaseClass.doSomething((Runnable) () -> System.out.println("true = " + true));
-    }
-
 }
 
 class BaseClass {
