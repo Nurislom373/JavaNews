@@ -15,7 +15,7 @@ import java.util.concurrent.Future;
  */
 public class SquareCalculator {
 
-    private final ExecutorService service = Executors.newCachedThreadPool();
+    private final ExecutorService service = Executors.newSingleThreadExecutor();
 
     public Future<Integer> calculate(Integer input) {
         return service.submit(() -> {
