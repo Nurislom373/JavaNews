@@ -4,6 +4,9 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Author: Nurislom
@@ -22,7 +25,30 @@ public class CFTest {
                 .thenApply(String::toUpperCase)
                 .thenAccept(System.out::println);
 
-        Assertions.assertTrue(voidCompletableFuture.isDone());
+        assertTrue(voidCompletableFuture.isDone());
+    }
+
+    @Test
+    void thenApplyTest() throws ExecutionException, InterruptedException {
+        CompletableFuture<String> completableFuture
+                = CompletableFuture.supplyAsync(() -> "Hello");
+
+        CompletableFuture<String> future = completableFuture
+                .thenApply(s -> s + " World");
+
+        assertEquals("Hello World", future.get());
+    }
+
+    @Test
+    void thenRunTest() throws ExecutionException, InterruptedException {
+        CompletableFuture<String> completableFuture
+                = CompletableFuture.supplyAsync(() -> "Hello");
+
+        CompletableFuture<Void> future = completableFuture
+                .thenRun(() -> System.out.println("Computation finished."));
+
+        System.out.println("Boom");
+        future.get();
     }
 
 }
