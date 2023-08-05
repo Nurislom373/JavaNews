@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Test;
 
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -64,6 +66,24 @@ public class CFTest {
         }).handle((s, t) -> s != null ? s : "Hello, Stranger!");
 
         assertEquals("Hello, Stranger!", completableFuture.get());
+    }
+
+    @Test
+    void combineTest() throws ExecutionException, InterruptedException {
+        ExecutorService executorService = Executors.newFixedThreadPool(10);
+        int x = 1337;
+        CompletableFuture<Integer> a = new CompletableFuture<>();
+        CompletableFuture<Integer> b = new CompletableFuture<>();
+        CompletableFuture<Integer> c = a.thenCombine(b, Integer::sum);
+        executorService.submit(() -> a.complete(f(x)));
+        executorService.submit(() -> b.complete(f(x)));
+        System.out.println(c.get());
+        executorService.shutdown();
+        Assertions.assertEquals(c.get(), 3575138);
+    }
+
+    int f(int val) {
+        return val * val;
     }
 
 }
