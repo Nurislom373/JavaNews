@@ -1,12 +1,11 @@
 package org.khasanof.thread_pools.completableFuture;
 
+import lombok.SneakyThrows;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import java.util.Objects;
+import java.util.concurrent.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -23,31 +22,25 @@ public class CFTest {
 
     @Test
     void suppleAsyncTest() {
-        CompletableFuture<Void> voidCompletableFuture = CompletableFuture.supplyAsync(() -> "hello completable future")
-                .thenApply(String::toUpperCase)
-                .thenAccept(System.out::println);
+        CompletableFuture<Void> voidCompletableFuture = CompletableFuture.supplyAsync(() -> "hello completable future").thenApply(String::toUpperCase).thenAccept(System.out::println);
 
         assertTrue(voidCompletableFuture.isDone());
     }
 
     @Test
     void thenApplyTest() throws ExecutionException, InterruptedException {
-        CompletableFuture<String> completableFuture
-                = CompletableFuture.supplyAsync(() -> "Hello");
+        CompletableFuture<String> completableFuture = CompletableFuture.supplyAsync(() -> "Hello");
 
-        CompletableFuture<String> future = completableFuture
-                .thenApply(s -> s + " World");
+        CompletableFuture<String> future = completableFuture.thenApply(s -> s + " World");
 
         assertEquals("Hello World", future.get());
     }
 
     @Test
     void thenRunTest() throws ExecutionException, InterruptedException {
-        CompletableFuture<String> completableFuture
-                = CompletableFuture.supplyAsync(() -> "Hello");
+        CompletableFuture<String> completableFuture = CompletableFuture.supplyAsync(() -> "Hello");
 
-        CompletableFuture<Void> future = completableFuture
-                .thenRun(() -> System.out.println("Computation finished."));
+        CompletableFuture<Void> future = completableFuture.thenRun(() -> System.out.println("Computation finished."));
 
         System.out.println("Boom");
         future.get();
@@ -57,8 +50,7 @@ public class CFTest {
     void handleTest() throws ExecutionException, InterruptedException {
         String name = null;
 
-        CompletableFuture<String> completableFuture
-                =  CompletableFuture.supplyAsync(() -> {
+        CompletableFuture<String> completableFuture = CompletableFuture.supplyAsync(() -> {
             if (name == null) {
                 throw new RuntimeException("Computation error!");
             }
@@ -80,6 +72,50 @@ public class CFTest {
         System.out.println(c.get());
         executorService.shutdown();
         Assertions.assertEquals(c.get(), 3575138);
+    }
+
+    @SneakyThrows
+    @Test
+    void combineTest2() {
+        CompletableFuture<Integer> combine = CompletableFuture.supplyAsync(() -> 5 * 5).thenCombine(CompletableFuture.supplyAsync(() -> 80), (price, rate) -> price + rate);
+        Assertions.assertEquals(combine.get(), 105);
+    }
+
+    @SneakyThrows
+    @Test
+    void combineTest3() {
+        CompletableFuture<Integer> combine = CompletableFuture.supplyAsync(() -> 5 * 5)
+                .thenCombine(CompletableFuture.supplyAsync(() -> {
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                    return 100;
+                }).orTimeout(100, TimeUnit.MILLISECONDS).handle((val, ex) -> {
+                    if (Objects.nonNull(ex)) {
+                        System.out.println("ex = " + ex);
+                        return 50;
+                    }
+                    return val;
+                }), (price, rate) -> price + rate);
+        Assertions.assertEquals(combine.get(), 75);
+    }
+
+    @SneakyThrows
+    @Test
+    void combineTest4() {
+        CompletableFuture<Integer> combine = CompletableFuture.supplyAsync(() -> 5 * 5)
+                .thenCombine(CompletableFuture.supplyAsync(() -> {
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                    return 100;
+                }).completeOnTimeout(50, 100, TimeUnit.MILLISECONDS),
+                        (price, rate) -> price + rate);
+        Assertions.assertEquals(combine.get(), 75);
     }
 
     int f(int val) {
