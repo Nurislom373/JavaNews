@@ -23,3 +23,15 @@ A ∨B is true if A or B or both are true. The expression A ⇒ B is true if whe
 expression A ⇔ B is true if A and B are both true or both false. A predicate is an expression that is true or false 
 depending on its parameters. Predicates are usually denoted by capital letters. For example, we can define a predicate
 P(x) that is true exactly when x is a prime number. Using this definition, P(7) is true but P(8) is false
+
+## Tail Recursive Function
+
+Difference tail recursive and simple recursive
+
+### Simple
+
+![simple](static/images/simple_recursive.png)
+
+### Tail
+
+![tail](static/images/tail_recursive.png)

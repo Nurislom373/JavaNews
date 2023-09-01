@@ -14,7 +14,8 @@ import java.util.stream.LongStream;
 public class FactorialDS {
 
     public static void main(String[] args) {
-        factorialUsingRecursion(9);
+        long recursive = factorialTailRecursive(6);
+        System.out.println("recursive = " + recursive);
     }
 
     private static void factorialUsingForLoop(int n) {
@@ -40,6 +41,14 @@ public class FactorialDS {
             return n;
         }
         return n * factorialUsingRecursionIntern(n - 1);
+    }
+
+    private static long factorialTailRecursive(long n) {
+        return factorialHelper(1, n);
+    }
+
+    private static long factorialHelper(long acc, long n) {
+        return n == 1 ? acc : factorialHelper(acc * n, n - 1);
     }
 
 }
