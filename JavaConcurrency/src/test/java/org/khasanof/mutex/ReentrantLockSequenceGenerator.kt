@@ -1,4 +1,4 @@
-package org.khasanof.thread_pools.mutex
+package org.khasanof.mutex
 
 import java.util.concurrent.locks.ReentrantLock
 

@@ -1,4 +1,4 @@
-package org.khasanof.thread_pools.completableFuture;
+package org.khasanof.completableFuture;
 
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.Assertions;

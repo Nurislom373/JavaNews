@@ -1,4 +1,4 @@
-package org.khasanof.thread_pools.async;
+package org.khasanof.async;
 
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.Assertions;

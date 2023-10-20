@@ -1,4 +1,4 @@
-package org.khasanof.thread_pools.future;
+package org.khasanof.future;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;

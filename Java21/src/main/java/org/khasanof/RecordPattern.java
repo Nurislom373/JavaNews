@@ -1,5 +1,7 @@
 package org.khasanof;
 
+import org.khasanof.condition.Condition;
+
 /**
  * @author Nurislom
  * @see org.khasanof
@@ -7,6 +9,8 @@ package org.khasanof;
  */
 public class RecordPattern {
 
+    public static void main(String[] args) {
 
+    }
 
 }

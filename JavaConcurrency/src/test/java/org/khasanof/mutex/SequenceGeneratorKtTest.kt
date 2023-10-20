@@ -1,4 +1,4 @@
-package org.khasanof.thread_pools.mutex
+package org.khasanof.mutex
 
 import org.junit.jupiter.api.Test
 import java.util.concurrent.Executors
