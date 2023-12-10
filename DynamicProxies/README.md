@@ -27,3 +27,9 @@ public class DynamicInvocationHandler implements InvocationHandler {
     }
 }
 ```
+
+## Source Link
+
+[xperti.io](https://xperti.io/blogs/java-dynamic-proxies-introduction/#:~:text=What%20is%20Java%20Dynamic%20Proxy,instead%20of%20the%20original%20one) </br>
+[baeldung](https://www.baeldung.com/java-dynamic-proxies)
+[medium](https://medium.com/@spac.valentin/java-dynamic-proxy-mechanism-and-how-spring-is-using-it-93756fc707d5)
