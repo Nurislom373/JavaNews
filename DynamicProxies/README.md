@@ -1,5 +1,8 @@
 # Dynamic Proxies
 
+Dynamic Proxylar individual objectlar yoki classlarda method chaqiruvlarini o'rash. Javadagi Dynamic Proxy bitta kamchiligi
+u faqat interface bilan ishlashida.
+
 Oddiygina qilib aytganda, proxylar o'z qurilmalari orqali (odatda real usullarga) funksiya chaqiruvini o'tkazadigan
 frontlar yoki o'ramlaridir(wrapper).
 

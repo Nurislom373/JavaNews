@@ -1,4 +1,4 @@
-package org.khasanof;
+package org.khasanof.old;
 
 import java.lang.reflect.Proxy;
 import java.util.HashMap;
