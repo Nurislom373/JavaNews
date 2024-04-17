@@ -2,7 +2,7 @@ package org.khasanof.mutex;
 
 /**
  * @author Nurislom
- * @see org.khasanof.thread_pools.mutex
+ * @see org.khasanof.threadPools.mutex
  * @since 9/25/2023 10:42 PM
  */
 public class SequenceGenerator {
