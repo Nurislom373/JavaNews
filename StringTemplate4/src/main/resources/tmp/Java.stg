@@ -1,0 +1,6 @@
+method(name,code) ::= <<
+public void <name>() {
+    <@preamble()>
+    <code>
+}
+>>
