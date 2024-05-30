@@ -1,4 +1,4 @@
-package org.khasanof.thread_pools;
+package org.khasanof.threadPools;
 
 import org.junit.jupiter.api.Test;
 

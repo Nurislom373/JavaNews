@@ -1,20 +1,16 @@
 package org.khasanof.async;
 
 import lombok.SneakyThrows;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Future;
-import java.util.stream.Collectors;
-
-import static java.util.stream.Collectors.toList;
 
 /**
  * @author Nurislom
- * @see org.khasanof.thread_pools.async
+ * @see org.khasanof.threadPools.async
  * @since 8/10/2023 5:51 AM
  */
 public class BestPriceFinderApp {

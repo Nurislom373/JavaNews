@@ -1,4 +1,4 @@
-package org.khasanof.thread_pools;
+package org.khasanof.threadPools;
 
 import org.junit.jupiter.api.Test;
 
@@ -7,7 +7,7 @@ import java.util.concurrent.CompletionStage;
 
 /**
  * @author Nurislom
- * @see org.khasanof.thread_pools
+ * @see org.khasanof.threadPools
  * @since 08.07.2023 21:06
  */
 public class CompletionStageTest {
