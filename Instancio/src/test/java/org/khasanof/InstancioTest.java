@@ -47,4 +47,25 @@ public class InstancioTest {
             assertNotNull(person.getAge());
         });
     }
+
+    /**
+     *
+     */
+    @Test
+    void thirdTestPopulatedPersonObjectsStream() {
+        List<Person> persons = Instancio.stream(Person.class)
+                .limit(10)
+                .toList();
+
+        assertNotNull(persons);
+        assertFalse(persons.isEmpty());
+        assertEquals(persons.size(), 10);
+
+        persons.forEach(person -> {
+            assertNotNull(person);
+            assertNotNull(person.getFirstname());
+            assertNotNull(person.getLastname());
+            assertNotNull(person.getAge());
+        });
+    }
 }
