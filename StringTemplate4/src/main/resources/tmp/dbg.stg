@@ -1,0 +1,2 @@
+import "Java.stg"
+@method.preamble() ::= <<System.out.println("enter");>>

@@ -1,0 +1,9 @@
+class(name, members) ::= <<
+class <name> {
+    <members>
+}
+>>
+
+constants(typename, names) ::= "<names:{n | <constant(n,i)>}; separator={<\n>}>"
+
+constant(n, i) ::= "public static final int <typename>_<n>=<i>;"
