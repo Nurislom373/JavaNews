@@ -1,0 +1,14 @@
+{
+  "inn" : "999888777",
+  "name" : "DEVOPS LLC",
+  "services" : [
+    {
+      "code" : "P2P_SERVICE",
+      "usageCount" : 10
+    },
+    {
+      "code" : "PAY_SERVICE",
+      "usageCount" : 100
+    }
+  ]
+}

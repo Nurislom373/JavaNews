@@ -1,0 +1,15 @@
+{
+  "atr0" : "value0",
+  "root" : {
+    "atr1" : "value1",
+    "atr2" : {
+      "subnivel" : {
+        "subsubnivel" : {
+          "subsubsubnivel" : {
+            "value" : "value2"
+          }
+        }
+      }
+    }
+  }
+}
