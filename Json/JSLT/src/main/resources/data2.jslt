@@ -1,0 +1,11 @@
+let inn = .inn
+let name = .name
+
+let services = [for (.services) {
+"inn" : $inn,
+"name" : $name,
+"code" : .code,
+"usageCount" : .usageCount
+}]
+
+$services

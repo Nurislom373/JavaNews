@@ -1,0 +1,5 @@
+{
+    "value-att0" : .atr0,
+    "value-att1" : .root.atr1,
+    "value-att2" : .root.atr2.subnivel.subsubnivel.subsubsubnivel.value
+}

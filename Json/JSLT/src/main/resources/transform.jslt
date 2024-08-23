@@ -1,0 +1,17 @@
+{
+    "name" : if (.fullName) then .fullName
+           else if (.firstName and .lastName) then .firstName + " " + .lastName
+           else "Unknown",
+    "age" : if (.years) then .years else 0,
+    "address" : {
+        "street" : if (.location.streetAddress) then .location.streetAddress else "",
+        "city" : if (.location.cityName) then .location.cityName else ""
+    },
+    "friends" : if (.friends) then
+                          [for (.friends) .{
+                                          "name" : if (.name) then .name else "Unknown",
+                                                              "age" : if (.age) then .age else 0
+                                                                                }]
+                                                                                else
+                                                                                [{"name" : "John Doe", "age" : 30}]
+}
