@@ -1,0 +1,26 @@
+{
+  "$schema" : "https://json-schema.org/draft/2020-12/schema",
+  "type" : "object",
+  "properties" : {
+    "area" : {
+      "type" : "string",
+      "enum" : [ "JAVA", "KOTLIN", "SCALA", "LINUX" ]
+    },
+    "content" : {
+      "type" : "string",
+      "minLength" : 1
+    },
+    "createdAt" : {
+      "type" : "string"
+    },
+    "id" : {
+      "type" : "string"
+    },
+    "title" : {
+      "type" : "string",
+      "minLength" : 1,
+      "maxLength" : 9000
+    }
+  },
+  "required" : [ "area", "content", "createdAt", "id", "title" ]
+}
