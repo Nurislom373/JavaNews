@@ -45,6 +45,8 @@ public class SimpleTriggerExample {
         sched.scheduleJob(job, trigger);
         sched.start();
 
+//        CalendarIntervalScheduleBuilder.calendarIntervalSchedule()
+
         JobDetail job2 = newJob(SimpleJob.class).withIdentity("job2", "group1")
                 .build();
 
