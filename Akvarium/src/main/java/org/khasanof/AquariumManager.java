@@ -26,7 +26,7 @@ public class AquariumManager {
 
     public void start() {
         var count = aquarium.getCount();
-        println(Color.GREEN, "Created Fishes Size: " + count);
+        println(Color.GREEN, "Created fishes size: " + count);
         Semaphore semaphore = new Semaphore(count);
 
         createNewFishes(count, semaphore);
@@ -50,7 +50,7 @@ public class AquariumManager {
             checkFishesAllDied();
             checkAquariumCapacity();
 
-            println(Color.CYAN, "Started Check Matched Fishes...");
+            println(Color.CYAN, "Started check matched fishes...");
             fishes.removeIf(fish -> !fish.isAlive());
 
             Map<Range, Gender> sortedFishesByRange = new HashMap<>();
@@ -58,8 +58,8 @@ public class AquariumManager {
             checkMatchRangeFishes(sortedFishesByRange, matchedFishesRange);
 
             println(Color.CYAN, "Fishes : " + fishes);
-            println(Color.CYAN, "Fishes Size : " + fishes.size());
-            println(Color.CYAN, "Found Matched Fishes : " + matchedFishesRange);
+            println(Color.CYAN, "Fishes size : " + fishes.size());
+            println(Color.CYAN, "Found matched fishes : " + matchedFishesRange);
 
             matchedFishesRange.forEach(matchFishNumber -> createNewFish(semaphore, aquarium));
             trySleepSecondMainThread();
@@ -71,15 +71,15 @@ public class AquariumManager {
 
     private void checkFishesAllDied() {
         if (fishes.isEmpty()) {
-            println(Color.RED, "All Fishes died. System shut down !!!");
-            System.exit(-1);
+            println(Color.RED, "All fishes died. System shut down !!!");
+            Runtime.getRuntime().exit(-1);
         }
     }
 
     private void checkAquariumCapacity() {
         if (fishes.size() == aquarium.getCapacity()) {
             println(Color.RED, "Aquarium filled. System shut down !!!");
-            System.exit(-1);
+            Runtime.getRuntime().exit(-1);
         }
     }
 
@@ -98,7 +98,7 @@ public class AquariumManager {
         fish.start();
 
         fishes.add(fish);
-        println(Color.YELLOW, "Added New Fish");
+        println(Color.YELLOW, "Added new fish");
     }
 
     private void trySleepSecondMainThread() {

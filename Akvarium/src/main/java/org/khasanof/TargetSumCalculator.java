@@ -9,6 +9,7 @@ import java.util.List;
  * @since 2/21/2025 3:50 PM
  */
 public class TargetSumCalculator {
+
     public static void main(String[] args) {
         double[] numbers = {215.41, 405.08, 151.44, 147.22, 937.13, 239.91, 491.45, 521.17, 768.99, 613.84};
         double target = 143.5;
@@ -43,10 +44,6 @@ public class TargetSumCalculator {
         }
 
         // Skip the current number
-        if (findExpression(numbers, index + 1, currentSum, expression, target, result)) {
-            return true;
-        }
-
-        return false;
+        return findExpression(numbers, index + 1, currentSum, expression, target, result);
     }
 }
