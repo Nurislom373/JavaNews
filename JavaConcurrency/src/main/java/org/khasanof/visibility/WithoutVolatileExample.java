@@ -4,8 +4,7 @@ public class WithoutVolatileExample {
 
     static boolean running = true;
 
-    public static void main(String[] args)
-            throws InterruptedException {
+    public static void main(String[] args) throws InterruptedException {
 
         Thread worker = new Thread(() -> {
             while (running) {}
